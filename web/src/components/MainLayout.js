@@ -12,7 +12,7 @@ function MainLayout(){
                         <Link to="/about">About</Link>
                     </li>
                     <li>
-                        <Link to="/project/mario">project</Link>
+                        <Link to="/projects">projects</Link>
                     </li>
                 </ul>
             </nav>

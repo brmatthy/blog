@@ -5,6 +5,7 @@ import About from './pages/About';
 import Project from './pages/Project';
 import MainLayout from './components/MainLayout'
 import NotFound from "./pages/NotFound";
+import Projects from "./pages/Projects";
 function App() {
     return (
         <BrowserRouter>
@@ -12,6 +13,7 @@ function App() {
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<Home/>} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/projects" element={<Projects />} />
                     <Route path="/project/:projectName" element={<Project />} />
                     <Route path="*" element={<NotFound />} />
                 </Route>
