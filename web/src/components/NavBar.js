@@ -1,5 +1,9 @@
 import React from 'react';
 import {AppBar, Slide, Tab, Tabs, useScrollTrigger} from '@mui/material';
+import {useLocation} from "react-router-dom";
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
+import WorkIcon from '@mui/icons-material/Work';
 
 function HideOnScroll(props) {
     const { children, window } = props;
@@ -34,27 +38,32 @@ function LinkTab(props) {
 }
 
 function NavBar(){
-
-    const [value, setValue] = React.useState(0);
-
-    const handleChange = (event, newValue) => {
-        // event.type can be equal to focus with selectionFollowsFocus.
-        if (
-            event.type !== 'click' ||
-            (event.type === 'click' && samePageLinkNavigation(event))
-        ) {
-            setValue(newValue);
-        }
-    };
-
-
+    const location = useLocation();
     return(
         <HideOnScroll>
             <AppBar>
-                <Tabs value={value} onChange={(e,v) => handleChange(e,v)} aria-label="nav tabs example">
-                    <LinkTab label="Home" href="/" />
-                    <LinkTab label="Projects" href="/projects" />
-                    <LinkTab label="About" href="/about" />
+                <Tabs value={location.pathname}>
+                    <LinkTab
+                        label="Home"
+                        value="/"
+                        href="/"
+                        icon={<HomeIcon />}
+                        iconPosition={'start'}
+                    />
+                    <LinkTab
+                        label="Projects"
+                        value="/projects"
+                        href="/projects"
+                        icon={<WorkIcon />}
+                        iconPosition={'start'}
+                    />
+                    <LinkTab
+                        label="About"
+                        value="/about"
+                        href="/about"
+                        icon={<InfoIcon />}
+                        iconPosition={'start'}
+                    />
                 </Tabs>
             </AppBar>
         </HideOnScroll>
