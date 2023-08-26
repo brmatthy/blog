@@ -1,6 +1,6 @@
-import {Outlet, Link} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import NavBar from "./NavBar";
-import {Box, Fab, Fade, Slide, useScrollTrigger} from "@mui/material";
+import {Box, Fab, Slide, useScrollTrigger} from "@mui/material";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 
@@ -37,20 +37,6 @@ function MainLayout(){
     return(
         <>
             <NavBar />
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/about">About</Link>
-                    </li>
-                    <li>
-                        <Link to="/projects">projects</Link>
-                    </li>
-                </ul>
-            </nav>
-
             <Outlet />
             <ScrollTopBtn />
         </>
