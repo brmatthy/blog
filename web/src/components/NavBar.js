@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppBar, Box, Grid, Slide, Tab, Tabs, Typography, useScrollTrigger} from '@mui/material';
+import {AppBar, Box, Grid, Slide, styled, Tab, Tabs, Typography, useScrollTrigger} from '@mui/material';
 import {useLocation} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
@@ -32,11 +32,37 @@ function LinkTab(props) {
     return (
         <Tab
             component="a"
-            sx={{ mb: 0}}
+            sx={{
+                mb: 0,
+                color:'primary.contrastText',
+                '&:hover': { color: 'secondary.dark' },
+            }}
             {...props}
         />
     );
 }
+
+const AntTab = styled((props) => <Tab component="a" {...props} />)(({ theme }) => ({
+    textTransform: 'none',
+    minWidth: 0,
+    [theme.breakpoints.up('sm')]: {
+        minWidth: 0,
+    },
+    fontWeight: theme.typography.fontWeightRegular,
+    marginRight: theme.spacing(1),
+    color: 'rgba(0, 0, 0, 0.85)',
+    '&:hover': {
+        color: '#40a9ff',
+        opacity: 1,
+    },
+    '&.Mui-selected': {
+        color: '#1890ff',
+        fontWeight: theme.typography.fontWeightMedium,
+    },
+    '&.Mui-focusVisible': {
+        backgroundColor: '#d1eaff',
+    },
+}));
 
 function NavBar(){
     const location = useLocation();
@@ -53,7 +79,7 @@ function NavBar(){
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <Tabs value={location.pathname}>
+                        <Tabs value={location.pathname} textColor='secondary' indicatorColor='secondary'>
                             <LinkTab
                                 label="Home"
                                 value="/"

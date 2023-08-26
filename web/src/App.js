@@ -19,6 +19,9 @@ const theme = createTheme({
             main: "#d47c6e",
             contrastText: "#fffdf7"
         },
+        info: {
+            main: "#73b7c7",
+        },
     },
 });
 
