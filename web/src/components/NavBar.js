@@ -18,16 +18,6 @@ function HideOnScroll(props) {
     );
 }
 
-function samePageLinkNavigation(event) {
-    return !(event.defaultPrevented ||
-        event.button !== 0 || // ignore everything but left-click
-        event.metaKey ||
-        event.ctrlKey ||
-        event.altKey ||
-        event.shiftKey);
-
-}
-
 function LinkTab(props) {
     return (
         <Tab
@@ -41,28 +31,6 @@ function LinkTab(props) {
         />
     );
 }
-
-const AntTab = styled((props) => <Tab component="a" {...props} />)(({ theme }) => ({
-    textTransform: 'none',
-    minWidth: 0,
-    [theme.breakpoints.up('sm')]: {
-        minWidth: 0,
-    },
-    fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(1),
-    color: 'rgba(0, 0, 0, 0.85)',
-    '&:hover': {
-        color: '#40a9ff',
-        opacity: 1,
-    },
-    '&.Mui-selected': {
-        color: '#1890ff',
-        fontWeight: theme.typography.fontWeightMedium,
-    },
-    '&.Mui-focusVisible': {
-        backgroundColor: '#d1eaff',
-    },
-}));
 
 function NavBar(){
     const location = useLocation();
