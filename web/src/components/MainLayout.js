@@ -1,6 +1,6 @@
 import {Outlet} from "react-router-dom";
 import NavBar from "./NavBar";
-import {Box, Fab, Slide, useScrollTrigger} from "@mui/material";
+import {Box, Fab, Slide, Toolbar, useScrollTrigger} from "@mui/material";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 
@@ -22,9 +22,17 @@ function ScrollTopBtn() {
         <Slide direction="up" in={trigger}>
             <Box
                 role="presentation"
-                sx={{ position: 'fixed', bottom: 16, right: 16 }}
+                sx={{ position: 'fixed', bottom: 16, right: 16}}
             >
-                <Fab size="small" onClick={handleClick}>
+                <Fab
+                    size="small"
+                    onClick={handleClick}
+                    sx={{
+                        backgroundColor:'secondary.main',
+                        color: 'secondary.contrastText',
+                        '&:hover': { color: 'secondary.main' }
+                    }}
+                >
                     <KeyboardArrowUpIcon/>
                 </Fab>
             </Box>
@@ -36,7 +44,8 @@ function ScrollTopBtn() {
 function MainLayout(){
     return(
         <>
-            <NavBar />
+            <NavBar/>
+            <Toolbar></Toolbar>
             <Outlet />
             <ScrollTopBtn />
         </>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppBar, Box, Grid, Slide, styled, Tab, Tabs, Typography, useScrollTrigger} from '@mui/material';
+import {AppBar, Box, Grid, Slide, Tab, Tabs, Typography, useScrollTrigger} from '@mui/material';
 import {useLocation} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
