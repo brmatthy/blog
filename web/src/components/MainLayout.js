@@ -1,8 +1,10 @@
 import {Outlet, Link} from "react-router-dom";
+import NavBar from "./NavBar";
 
 function MainLayout(){
     return(
         <>
+            <NavBar />
             <nav>
                 <ul>
                     <li>
