@@ -1,6 +1,6 @@
 import React from 'react';
 import {AppBar, Box, Grid, Slide, Tab, Tabs, Typography, useScrollTrigger} from '@mui/material';
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import WorkIcon from '@mui/icons-material/Work';
@@ -19,9 +19,11 @@ function HideOnScroll(props) {
 }
 
 function LinkTab(props) {
+    const children = props.children
+
     return (
         <Tab
-            component="a"
+            component={Link}
             sx={{
                 mb: 0,
                 color:'primary.contrastText',
@@ -38,34 +40,42 @@ function NavBar(){
         <HideOnScroll>
             <AppBar>
                 <Grid container >
-                    <Grid item xs sx={{ textAlign: 'justify-center', mx: 2, mt:2 }}>
+
+                    <Grid 
+                        item
+                        xs
+                        sx={{ textAlign: 'justify-center', mx: 2, mt:2, color: 'inherit', textDecoration: 'inherit' }} 
+                        component={Link}
+                        to="/"
+                    >
                         <Typography gutterBottom variant="h4" component="div" sx={{ mb: 0}}>
-                            <Box sx={{ fontWeight: 'bold', letterSpacing: 2}}>Tijmen Matthys</Box>
+                            Tijmen Matthys
                         </Typography>
-                        <Typography variant="subtitle1"  component="div" sx={{ mb: 0, letterSpacing: 1}}>
+                        <Typography variant="subtitle1"  component="div" sx={{ mb: 0}}>
                             Gamedev student & Songwriter
                         </Typography>
+
                     </Grid>
                     <Grid item>
                         <Tabs value={location.pathname} textColor='secondary' indicatorColor='secondary'>
                             <LinkTab
                                 label="Home"
                                 value="/"
-                                href="/"
+                                to="/"
                                 icon={<HomeIcon />}
                                 iconPosition={'start'}
                             />
                             <LinkTab
                                 label="Projects"
                                 value="/projects"
-                                href="/projects"
+                                to="/projects"
                                 icon={<WorkIcon />}
                                 iconPosition={'start'}
                             />
                             <LinkTab
                                 label="About"
                                 value="/about"
-                                href="/about"
+                                to="/about"
                                 icon={<InfoIcon />}
                                 iconPosition={'start'}
                             />

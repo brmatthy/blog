@@ -6,10 +6,10 @@ import Project from './pages/Project';
 import MainLayout from './components/MainLayout'
 import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
-import {createTheme, ThemeProvider} from "@mui/material";
+import {createTheme, responsiveFontSizes, ThemeProvider} from "@mui/material";
 
 
-const theme = createTheme({
+let theme = createTheme({
     palette: {
         primary: {
             main: "#d4c485",
@@ -23,7 +23,25 @@ const theme = createTheme({
             main: "#73b7c7",
         },
     },
+    /*typography: {
+        fontFamily: "'Roboto'",
+        h1: {
+            fontFamily: "'Roboto'"
+        },
+        h2: {
+            fontFamily: "'Roboto'"
+        },
+        h3: {
+            fontFamily: "'Roboto'"
+        },
+        h4: {
+            fontFamily: "'Roboto'"
+        }
+    },*/
 });
+
+theme = responsiveFontSizes(theme);
+
 
 function App() {
     return (
