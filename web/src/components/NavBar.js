@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppBar, Drawer, Grid, Slide, Tab, Tabs, Typography, useMediaQuery, useScrollTrigger, useTheme} from '@mui/material';
+import {AppBar, Drawer, Grid, List, ListItem, ListItemIcon, ListItemText, Slide, Tab, Tabs, Typography, useMediaQuery, useScrollTrigger, useTheme} from '@mui/material';
 import {Link, useLocation} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -65,6 +65,20 @@ function DesktopTabs(){
     );
 }
 
+function MoblieNav({icon, name, to}){
+    return(
+            <List>
+                <ListItem>
+                    <ListItemIcon>
+                        {icon} 
+                    </ListItemIcon>
+                    <ListItemText primary={name}/>
+                </ListItem>
+            </List>
+        );
+
+}
+
 function NavBar(){
     const location = useLocation();
     const mobileBreak = useMediaQuery('(max-width:600px)');
@@ -103,7 +117,7 @@ function NavBar(){
                                     color="inherit"
                                     onClick={toggleDrawer}
                                 >
-                                    {open ? (<CloseIcon/>) : (<MenuIcon />)}
+                                    <MenuIcon />
                                 </IconButton>
                             ) : (
                                 <DesktopTabs/>
@@ -111,12 +125,31 @@ function NavBar(){
                         }                
                     </Grid>
                 </Grid>
-
-
+                <Drawer
+                    anchor='right'
+                    open={open}
+                    onClose={toggleDrawer}
+                >
+                    <MoblieNav
+                        icon={<HomeIcon/>}
+                        name='Home'
+                        to='/'
+                    />
+                    <MoblieNav
+                        icon={<WorkIcon/>}
+                        name='Projects'
+                        to='/projects'
+                    />
+                    <MoblieNav
+                        icon={<InfoIcon/>}
+                        name='About'
+                        to='/about'
+                    />
+                </Drawer>
             </AppBar>
             
         </HideOnScroll>
-
+        
     );
 
 }
