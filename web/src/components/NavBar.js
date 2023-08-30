@@ -1,9 +1,12 @@
 import React from 'react';
-import {AppBar, Box, Grid, Slide, Tab, Tabs, Typography, useScrollTrigger} from '@mui/material';
+import {AppBar, Drawer, Grid, Slide, Tab, Tabs, Typography, useMediaQuery, useScrollTrigger, useTheme} from '@mui/material';
 import {Link, useLocation} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 import WorkIcon from '@mui/icons-material/Work';
+import IconButton from '@mui/material/IconButton';
 
 function HideOnScroll(props) {
     const { children, window } = props;
@@ -34,8 +37,45 @@ function LinkTab(props) {
     );
 }
 
+function DesktopTabs(){
+    return(
+        <Tabs value={location.pathname} textColor='secondary' indicatorColor='secondary'>
+            <LinkTab
+                label="Home"
+                value="/"
+                to="/"
+                icon={<HomeIcon />}
+                iconPosition={'start'}
+            />
+            <LinkTab
+                label="Projects"
+                value="/projects"
+                to="/projects"
+                icon={<WorkIcon />}
+                iconPosition={'start'}
+            />
+            <LinkTab
+                label="About"
+                value="/about"
+                to="/about"
+                icon={<InfoIcon />}
+                iconPosition={'start'}
+            />
+        </Tabs>
+    );
+}
+
 function NavBar(){
     const location = useLocation();
+    const mobileBreak = useMediaQuery('(max-width:600px)');
+    const [open, setOpen] = React.useState(false);
+
+
+    const toggleDrawer = () => {
+        setOpen(!open);
+    };
+    
+
     return(
         <HideOnScroll>
             <AppBar>
@@ -57,34 +97,24 @@ function NavBar(){
 
                     </Grid>
                     <Grid item>
-                        <Tabs value={location.pathname} textColor='secondary' indicatorColor='secondary'>
-                            <LinkTab
-                                label="Home"
-                                value="/"
-                                to="/"
-                                icon={<HomeIcon />}
-                                iconPosition={'start'}
-                            />
-                            <LinkTab
-                                label="Projects"
-                                value="/projects"
-                                to="/projects"
-                                icon={<WorkIcon />}
-                                iconPosition={'start'}
-                            />
-                            <LinkTab
-                                label="About"
-                                value="/about"
-                                to="/about"
-                                icon={<InfoIcon />}
-                                iconPosition={'start'}
-                            />
-                        </Tabs>
+                        {
+                            mobileBreak ? (
+                                <IconButton
+                                    color="inherit"
+                                    onClick={toggleDrawer}
+                                >
+                                    {open ? (<CloseIcon/>) : (<MenuIcon />)}
+                                </IconButton>
+                            ) : (
+                                <DesktopTabs/>
+                            )
+                        }                
                     </Grid>
                 </Grid>
 
 
             </AppBar>
+            
         </HideOnScroll>
 
     );
