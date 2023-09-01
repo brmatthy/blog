@@ -117,12 +117,13 @@ function NavBar(){
                         </Typography>
 
                     </Grid>
-                    <Grid item>
+                    <Grid item sx={{ mt:2}}>
                         {
                             mobileBreak ? (
                                 <IconButton
                                     color="inherit"
                                     onClick={toggleDrawer}
+                                    sx={{ textAlign: 'justify-center'}}
                                 >
                                     <MenuIcon />
                                 </IconButton>
