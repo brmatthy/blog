@@ -3,7 +3,6 @@ import {AppBar, Drawer, Grid, List, ListItem, ListItemIcon, ListItemText, Slide,
 import {Link, useLocation} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 import WorkIcon from '@mui/icons-material/Work';
 import IconButton from '@mui/material/IconButton';
@@ -22,8 +21,6 @@ function HideOnScroll(props) {
 }
 
 function LinkTab(props) {
-    const children = props.children
-
     return (
         <Tab
             component={Link}
@@ -39,7 +36,7 @@ function LinkTab(props) {
 
 function DesktopTabs(){
     return(
-        <Tabs value={location.pathname} textColor='secondary' indicatorColor='secondary'>
+        <Tabs value={useLocation().pathname} textColor='secondary' indicatorColor='secondary'>
             <LinkTab
                 label="Home"
                 value="/"
@@ -66,24 +63,33 @@ function DesktopTabs(){
 }
 
 function MoblieNav({icon, name, to, onClick}){
+    const selected = useLocation().pathname === to;
     return(
             <ListItem 
                 component={Link} 
                 to={to}
-                sx={{color:'inherit', textDecoration:'inherit'}}
                 onClick={onClick}
+                sx={{ mr:2 }}
             >
-                <ListItemIcon>
+                <ListItemIcon
+                    sx={{
+                        color: selected ? 'secondary.main' : 'primary.contrastText'
+                    }}
+                >
                     {icon} 
                 </ListItemIcon>
-                <ListItemText primary={name}/>
+                <ListItemText 
+                    primary={name}
+                    sx={{
+                        color: selected ? 'secondary.main' : 'primary.contrastText'
+                    }}
+                />
             </ListItem>
         );
 
 }
 
 function NavBar(){
-    const location = useLocation();
     const mobileBreak = useMediaQuery('(max-width:600px)');
     const [open, setOpen] = React.useState(false);
 
@@ -91,13 +97,11 @@ function NavBar(){
     const toggleDrawer = () => {
         setOpen(!open);
     };
-    
 
     return(
         <HideOnScroll>
             <AppBar>
                 <Grid container >
-
                     <Grid 
                         item
                         xs
@@ -132,6 +136,11 @@ function NavBar(){
                     anchor='right'
                     open={open}
                     onClose={toggleDrawer}
+                    PaperProps={{
+                        sx:{
+                            backgroundColor:'primary.main'
+                        }
+                    }}
                 >
                     <List>
                         <MoblieNav
@@ -156,9 +165,7 @@ function NavBar(){
                     </List>
                 </Drawer>
             </AppBar>
-            
         </HideOnScroll>
-        
     );
 
 }
