@@ -65,16 +65,19 @@ function DesktopTabs(){
     );
 }
 
-function MoblieNav({icon, name, to}){
+function MoblieNav({icon, name, to, onClick}){
     return(
-            <List>
-                <ListItem>
-                    <ListItemIcon>
-                        {icon} 
-                    </ListItemIcon>
-                    <ListItemText primary={name}/>
-                </ListItem>
-            </List>
+            <ListItem 
+                component={Link} 
+                to={to}
+                sx={{color:'inherit', textDecoration:'inherit'}}
+                onClick={onClick}
+            >
+                <ListItemIcon>
+                    {icon} 
+                </ListItemIcon>
+                <ListItemText primary={name}/>
+            </ListItem>
         );
 
 }
@@ -130,21 +133,27 @@ function NavBar(){
                     open={open}
                     onClose={toggleDrawer}
                 >
-                    <MoblieNav
-                        icon={<HomeIcon/>}
-                        name='Home'
-                        to='/'
-                    />
-                    <MoblieNav
-                        icon={<WorkIcon/>}
-                        name='Projects'
-                        to='/projects'
-                    />
-                    <MoblieNav
-                        icon={<InfoIcon/>}
-                        name='About'
-                        to='/about'
-                    />
+                    <List>
+                        <MoblieNav
+                            icon={<HomeIcon/>}
+                            name='Home'
+                            to='/'
+                            onClick={toggleDrawer}
+                        />
+                        <MoblieNav
+                            icon={<WorkIcon/>}
+                            name='Projects'
+                            to='/projects'
+                            onClick={toggleDrawer}
+                        />
+                        <MoblieNav
+                            icon={<InfoIcon/>}
+                            name='About'
+                            to='/about'
+                            onClick={toggleDrawer}
+                        />
+     
+                    </List>
                 </Drawer>
             </AppBar>
             
