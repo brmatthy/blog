@@ -1,24 +1,12 @@
 import React from 'react';
-import {AppBar, Drawer, Grid, List, ListItem, ListItemIcon, ListItemText, Slide, Tab, Tabs, Typography, useMediaQuery, useScrollTrigger, useTheme} from '@mui/material';
+import {AppBar, Drawer, Grid, List, ListItem, ListItemIcon, ListItemText, Slide, Tab, Tabs, Typography, useMediaQuery } from '@mui/material';
 import {Link, useLocation} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
 import InfoIcon from '@mui/icons-material/Info';
 import WorkIcon from '@mui/icons-material/Work';
 import IconButton from '@mui/material/IconButton';
-
-function HideOnScroll(props) {
-    const { children, window } = props;
-    const trigger = useScrollTrigger({
-        target: window ? window() : undefined,
-    });
-
-    return (
-        <Slide appear={false} direction="down" in={!trigger}>
-            {children}
-        </Slide>
-    );
-}
+import HideOnScroll from './HideOnScroll';
 
 function LinkTab(props) {
     return (
@@ -99,7 +87,7 @@ function NavBar(){
     };
 
     return(
-        <HideOnScroll>
+        <HideOnScroll direction='down'>
             <AppBar>
                 <Grid container >
                     <Grid 
