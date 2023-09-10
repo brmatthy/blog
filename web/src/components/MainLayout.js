@@ -1,6 +1,6 @@
 import {Outlet} from "react-router-dom";
 import NavBar from "./NavBar";
-import BottomBar from "./BottomBar";
+import BottomBar from "./bottombar/BottomBar";
 import {Box, Fab, Slide, Toolbar, useScrollTrigger} from "@mui/material";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
