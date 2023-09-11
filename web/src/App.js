@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import About from './pages/About';
-import Project from './pages/Project';
+import Project from './pages/projects/Project';
 import MainLayout from './components/MainLayout'
 import NotFound from "./pages/NotFound";
-import Projects from "./pages/Projects";
+import Projects from "./pages/projects/Projects";
 import {createTheme, responsiveFontSizes, ThemeProvider} from "@mui/material";
 
 
