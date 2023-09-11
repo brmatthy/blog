@@ -1,5 +1,6 @@
 import {Outlet} from "react-router-dom";
 import NavBar from "./NavBar";
+import BottomBar from "./bottombar/BottomBar";
 import {Box, Fab, Slide, Toolbar, useScrollTrigger} from "@mui/material";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
@@ -41,15 +42,18 @@ function ScrollTopBtn() {
 }
 
 
-function MainLayout(){
-    return(
-        <>
-            <NavBar/>
-            <Toolbar></Toolbar>
-            <Outlet />
-            <ScrollTopBtn />
-        </>
-    );
+function MainLayout() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <NavBar />
+      <Toolbar></Toolbar>
+      <div style={{ flex: 1 }}>
+        <Outlet />
+      </div>
+      <ScrollTopBtn />
+      <BottomBar />
+    </div>
+  );
 }
 
 export default MainLayout;
