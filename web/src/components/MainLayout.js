@@ -42,22 +42,18 @@ function ScrollTopBtn() {
 }
 
 
-function MainLayout(){
-    return(
-        <>
-            <NavBar/>
-            <Toolbar></Toolbar>
-            <div
-                sx={{ display: 'flex' }}
-            >
-                <Outlet sx={{ flexGrow: 1 }} />
-                <ScrollTopBtn />
-                <BottomBar/>
-            </div>
-
-            
-        </>
-    );
+function MainLayout() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <NavBar />
+      <Toolbar></Toolbar>
+      <div style={{ flex: 1 }}>
+        <Outlet />
+      </div>
+      <ScrollTopBtn />
+      <BottomBar />
+    </div>
+  );
 }
 
 export default MainLayout;
