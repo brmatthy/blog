@@ -10,6 +10,9 @@ import ItchIoIcon from '../icons/ItchIoIcon';
 import ArtStationIcon from '../icons/ArtStationIcon';
 import SketchfabIcon from '../icons/SketchFabIcon';
 import WolrdsBeyondIcon from '../icons/WorldsBeyondIcon';
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
+import PaletteIcon from '@mui/icons-material/Palette';
 
 function LeftSection(){
   return(
@@ -70,6 +73,31 @@ function LeftSection(){
   );
 }
 
+function RightSection(){
+  return(
+    <Box sx= {{ py: 5, pr: 3}}>
+      <IconLink
+        name='Home'
+        icon={() => <HomeIcon/>}
+        href='/'
+        reversed
+      />
+      <IconLink
+        name='Projects'
+        icon={() => <PaletteIcon/>}
+        href='/projects'
+        reversed
+      />
+      <IconLink
+        name='About'
+        icon={() => <InfoIcon/>}
+        href='/about'
+        reversed
+      />
+    </Box>
+  );
+}
+
 
 function BottomBar(){
   return(
@@ -84,8 +112,8 @@ function BottomBar(){
       }}
     >
       <LeftSection/>
-      <div>Item 2</div>
-      <div>Item 3</div>
+      <div></div>
+      <RightSection/>
     </Box>
   );
 }

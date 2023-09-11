@@ -4,7 +4,7 @@ import {Link, useLocation} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
 import InfoIcon from '@mui/icons-material/Info';
-import WorkIcon from '@mui/icons-material/Work';
+import PaletteIcon from '@mui/icons-material/Palette';
 import IconButton from '@mui/material/IconButton';
 import HideOnScroll from './HideOnScroll';
 
@@ -36,7 +36,7 @@ function DesktopTabs(){
                 label="Projects"
                 value="/projects"
                 to="/projects"
-                icon={<WorkIcon />}
+                icon={<PaletteIcon />}
                 iconPosition={'start'}
             />
             <LinkTab
@@ -139,7 +139,7 @@ function NavBar(){
                             onClick={toggleDrawer}
                         />
                         <MoblieNav
-                            icon={<WorkIcon/>}
+                            icon={<PaletteIcon/>}
                             name='Projects'
                             to='/projects'
                             onClick={toggleDrawer}
