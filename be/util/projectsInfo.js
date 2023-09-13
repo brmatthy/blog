@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 function getProjectsDir(){
-    return path.join(__dirname, '..', 'projects');
+    return path.join(__dirname, '..', 'public', 'projects');
 }
 
 function getBaseUrl(req){
@@ -13,15 +13,6 @@ function projectFolderExists(projectName){
     try{
         const contents = fs.readdirSync(getProjectsDir());
         return contents.includes(projectName);
-    }catch{
-        return false;
-    }
-}
-
-function projectFileExists(projectName, fileName){
-    const filePath = path.join(getProjectsDir(), projectName, fileName);
-    try{
-        return fs.existsSync(filePath);
     }catch{
         return false;
     }
@@ -52,48 +43,15 @@ function getProjectUrls(req){
     }
     const baseUrl = getBaseUrl(req);
     const json = {
-        "meta": `${baseUrl}/${projectName}/meta`,
-        "thumbnail": `${baseUrl}/images/${projectName}.jpg`,
-        "page": `${baseUrl}/${projectName}/page`
+        "meta": `${baseUrl}/projects/${projectName}/meta.json`,
+        "thumbnail": `${baseUrl}/projects/${projectName}/thumbnail.jpg`,
+        "page": `${baseUrl}/projects/${projectName}/page.md`
     }
     return json;
 }
 
-function getMetaOfProject(req){
-    // check if file exists
-    const projectName = req.params.projectName;
-    if(!projectFolderExists(projectName)){
-        return null;
-    }
-    const fileName = 'meta.json';
-    if(!projectFileExists(projectName, fileName)){
-        return null;
-    }
-
-    // read the file
-    const filePath = path.join(getProjectsDir(), projectName, fileName);
-    try{
-        return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-    }catch{
-        return null;
-    }
-}
-
-function getPageOfProject(req){
-    const projectName = req.params.projectName;
-    if(!projectFolderExists(projectName)){
-        return null;
-    }
-    const fileName = 'page.md';
-    if(!projectFileExists(projectName, fileName)){
-        return null;
-    }
-    return true;
-}
 
 module.exports = {
     getAllProjectUrls,
     getProjectUrls,
-    getMetaOfProject,
-    getPageOfProject
 }

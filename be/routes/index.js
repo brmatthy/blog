@@ -16,28 +16,6 @@ router.get('/:projectName', function(req, res, next) {
   res.send(json);
 });
 
-router.get('/:projectName/meta', function(req, res, next){
-  const meta = getMetaOfProject(req);
-  if(meta == null){
-    res.status(404).send("404");
-  }
-  res.send(meta);
-});
 
-router.get('/:projectName/thumbnail', function(req, res, next){
-  const thumbnail = getThumbnailOfProject(req);
-  if(thumbnail == null){
-    res.status(404).send("404");
-  }
-  res.send(thumbnail);
-});
-
-router.get('/:projectName/page', function(req, res, next){
-  const page = getPageOfProject(req);
-  if(page == null){
-    res.status(404).send("404");
-  }
-  res.send(page);
-});
 
 module.exports = router;
