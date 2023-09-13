@@ -62,6 +62,7 @@ function getProjectUrls(req){
 }
 
 function getMetaOfProject(req){
+    // check if file exists
     const projectName = req.params.projectName;
     if(!projectFolderExists(projectName)){
         return null;
@@ -70,7 +71,14 @@ function getMetaOfProject(req){
     if(!projectFileExists(projectName, fileName)){
         return null;
     }
-    return true;
+
+    // read the file
+    const filePath = path.join(getProjectsDir(), projectName, fileName);
+    try{
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    }catch{
+        return null;
+    }
 }
 
 function getThumbnailOfProject(req){
