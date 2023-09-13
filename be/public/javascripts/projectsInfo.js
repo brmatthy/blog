@@ -20,6 +20,15 @@ function projectFolderExists(projectName){
     }
 }
 
+function projectFileExists(projectName, fileName){
+    const filePath = path.join(getProjectsDir(), projectName, fileName);
+    try{
+        return fs.existsSync(filePath);
+    }catch{
+        return false;
+    }
+}
+
 function getAllProjectFolders(){
     try {
         return fs.readdirSync(getProjectsDir());
@@ -52,7 +61,46 @@ function getProjectUrls(req){
     return json;
 }
 
+function getMetaOfProject(req){
+    const projectName = req.params.projectName;
+    if(!projectFolderExists(projectName)){
+        return null;
+    }
+    const fileName = 'meta.json';
+    if(!projectFileExists(projectName, fileName)){
+        return null;
+    }
+    return true;
+}
+
+function getThumbnailOfProject(req){
+    const projectName = req.params.projectName;
+    if(!projectFolderExists(projectName)){
+        return null;
+    }
+    const fileName = 'thumbnail.jpg';
+    if(!projectFileExists(projectName, fileName)){
+        return null;
+    }
+    return true;
+}
+
+function getPageOfProject(req){
+    const projectName = req.params.projectName;
+    if(!projectFolderExists(projectName)){
+        return null;
+    }
+    const fileName = 'page.md';
+    if(!projectFileExists(projectName, fileName)){
+        return null;
+    }
+    return true;
+}
+
 module.exports = {
     getAllProjectUrls,
-    getProjectUrls
+    getProjectUrls,
+    getMetaOfProject,
+    getThumbnailOfProject,
+    getPageOfProject
 }
