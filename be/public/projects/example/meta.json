@@ -1,0 +1,8 @@
+{
+    "Title": "Example title",
+    "tags": ["tag1", "tag2"],
+    "day": 14,
+    "month": 6,
+    "year": 2022,
+    "description": "A beautifull example description."
+}
