@@ -1,5 +1,5 @@
 var express = require('express');
-const { getAllProjectUrls, getProjectUrls, getMetaOfProject, getThumbnailOfProject, getPageOfProject } = require('../public/javascripts/projectsInfo');
+const { getAllProjectUrls, getProjectUrls, getMetaOfProject, getThumbnailOfProject, getPageOfProject } = require('../util/projectsInfo');
 var router = express.Router();
 
 /* GET home page. */

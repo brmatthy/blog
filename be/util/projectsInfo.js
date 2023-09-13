@@ -1,10 +1,8 @@
-
-
 const fs = require('fs');
 const path = require('path');
 
 function getProjectsDir(){
-    return path.join(__dirname, '..', '..', 'projects');
+    return path.join(__dirname, '..', 'projects');
 }
 
 function getBaseUrl(req){
@@ -55,7 +53,7 @@ function getProjectUrls(req){
     const baseUrl = getBaseUrl(req);
     const json = {
         "meta": `${baseUrl}/${projectName}/meta`,
-        "thumbnail": `${baseUrl}/${projectName}/thumbnail`,
+        "thumbnail": `${baseUrl}/images/${projectName}.jpg`,
         "page": `${baseUrl}/${projectName}/page`
     }
     return json;
@@ -81,18 +79,6 @@ function getMetaOfProject(req){
     }
 }
 
-function getThumbnailOfProject(req){
-    const projectName = req.params.projectName;
-    if(!projectFolderExists(projectName)){
-        return null;
-    }
-    const fileName = 'thumbnail.jpg';
-    if(!projectFileExists(projectName, fileName)){
-        return null;
-    }
-    return true;
-}
-
 function getPageOfProject(req){
     const projectName = req.params.projectName;
     if(!projectFolderExists(projectName)){
@@ -109,6 +95,5 @@ module.exports = {
     getAllProjectUrls,
     getProjectUrls,
     getMetaOfProject,
-    getThumbnailOfProject,
     getPageOfProject
 }
