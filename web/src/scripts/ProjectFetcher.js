@@ -23,6 +23,14 @@ export async function getProjectMetaData(projectUrl){
 
 }
 
+export async function getThumbnailUrl(projectUrl){
+    const res = await fetch(projectUrl);
+    if(!res.ok){
+        return '';
+    }
+    return (await res.json()).thumbnail;
+}
+
 export async function getAllTags(){
     const tags = new Set([]);
     const projectUrls = await getAllProjectUrls();

@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import ProjectCard from './ProjectCard';
 import { getAllProjectUrls, getAllTags } from '../../scripts/ProjectFetcher';
+import { Card } from '@mui/material';
 
 
 function Projects(){
-    const [tags, setTags] = useState([]);
+    const [projectUrls, setProjectUrls] = useState([]);
 
     useEffect(() => {
-        async function fetchTags(){
-            setTags(await getAllTags())
+        async function fetchProjectUrls(){
+            setProjectUrls(await getAllProjectUrls())
         }
-        fetchTags();
+        fetchProjectUrls();
     }, []);
 
     
     return (
         <div>
-            <h1> Welcome to the projects page. </h1>
-            {tags}
-            <ProjectCard dir='/home/brent/projects/blog/web/src/pages/projects/example/'/>
+            {projectUrls.map((projectUrl) => 
+                    <ProjectCard key={projectUrl} projectUrl={projectUrl} />
+                )
+            }
         </div>
+    
     );
 }
 export default Projects;
