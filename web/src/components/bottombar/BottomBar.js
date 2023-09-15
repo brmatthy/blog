@@ -13,10 +13,11 @@ import WolrdsBeyondIcon from '../icons/WorldsBeyondIcon';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import PaletteIcon from '@mui/icons-material/Palette';
+import HFillWrapper from '../HFillWrapper';
 
 function LeftSection(){
   return(
-    <Box sx= {{ py: 5, pl: 3}}>
+    <Box sx= {{ py: 5 }}>
       <Box sx={{ mb: 3 }} >
 
         <IconLink
@@ -75,7 +76,7 @@ function LeftSection(){
 
 function RightSection(){
   return(
-    <Box sx= {{ py: 5, pr: 3}}>
+    <Box sx= {{ py: 5 }}>
       <IconLink
         name='Home'
         icon={() => <HomeIcon/>}
@@ -101,19 +102,20 @@ function RightSection(){
 
 function BottomBar(){
   return(
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        p: 1,
-        
-        bgcolor: 'primary.main',
+    <Box sx={{ bgcolor: 'primary.main'}}>
+      <HFillWrapper>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
 
-      }}
-    >
-      <LeftSection/>
-      <div></div>
-      <RightSection/>
+          }}
+        >
+          <LeftSection/>
+          <div></div>
+          <RightSection/>
+        </Box>
+      </HFillWrapper>
     </Box>
   );
 }

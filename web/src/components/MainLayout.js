@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import BottomBar from "./bottombar/BottomBar";
 import {Box, Fab, Slide, Toolbar, useScrollTrigger} from "@mui/material";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import HFillWrapper from "./HFillWrapper";
 
 
 function ScrollTopBtn() {
@@ -48,10 +49,14 @@ function MainLayout() {
       <NavBar />
       <Toolbar sx={{ mb:3}}></Toolbar>
       <div style={{ flex: 1 }}>
-        <Outlet />
+        <HFillWrapper>
+            <Outlet />
+        </HFillWrapper>
       </div>
       <ScrollTopBtn />
-      <BottomBar />
+      <div style={{ flex: 0}}>
+            <BottomBar/>
+      </div>
     </div>
   );
 }
