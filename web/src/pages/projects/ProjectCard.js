@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Card, CardActionArea, CardContent, CardMedia, Chip, Divider, Typography } from '@mui/material'
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Chip, Divider, Typography } from '@mui/material'
 import { getProjectMetaData, getThumbnailUrl } from "../../scripts/ProjectFetcher";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
@@ -42,21 +42,26 @@ function ProjectCard({projectUrl}){
                     <Typography variant="body2">
                         {projectMeta.description}
                     </Typography>
-                    <Divider variant="middle" sx={{my:1}}/>
-                    <Box display='flex' justifyContent='center'>
-                    {projectMeta.tags.map((tag) =>
-                        <Chip
-                            key={tag} 
-                            label={tag}
-                            sx={{ mr:1, }}
-                            color="secondary"
-                        />
-                    )
-                    }
-                </Box>
+                    
                 </CardContent>
                 
             </CardActionArea>
+            <CardActions sx={{ display:'flex', flexWrap:'wrap'}}>
+                {projectMeta.tags.map((tag) =>
+                    <Button
+                        key={tag} 
+                        color="secondary"
+                        size="small"
+                        variant="outlined"
+                        sx={{
+                            textTransform: 'capitalize'
+                        }}
+                    >
+                            {tag}
+                    </Button>
+                )
+                }
+            </CardActions> 
         </Card>
     );
 
