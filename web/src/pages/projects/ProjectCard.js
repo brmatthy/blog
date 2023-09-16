@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Chip, Divider, Typography } from '@mui/material'
-import { getProjectMetaData, getThumbnailUrl } from "../../scripts/ProjectFetcher";
+import { getNameByProjectUrl, getProjectMetaData, getThumbnailUrl } from "../../scripts/ProjectFetcher";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { useHistory, useNavigate } from 'react-router-dom';
 
 function ProjectCard({projectUrl}){
     const [projectMeta, setProjectMeta] = useState({"tags": []});
@@ -20,10 +21,15 @@ function ProjectCard({projectUrl}){
         }
         fetchThumbnailUrl();
     })
+    const navigate = useNavigate();
+    function handleRoute(){
+        navigate(`${projectUrl.split('/').pop()}`);
+
+    }   
     
     return(
         <Card sx= {{ maxWidth:400, m:1}}>
-            <CardActionArea>
+            <CardActionArea onClick={handleRoute}>
                 <CardMedia
                     component="img"
                     image={projectThumbnailUrl}
