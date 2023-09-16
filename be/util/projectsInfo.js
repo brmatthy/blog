@@ -62,9 +62,7 @@ function pageToHTML(mdPath){
 
     // convert to html
     const converter = new showdown.Converter();
-    const html = converter.makeHtml(md);
-
-    return html;
+    return converter.makeHtml(md);
 }
 
 function getProjectHTML(req){
@@ -75,6 +73,15 @@ function getProjectHTML(req){
     const baseUrl = getBaseUrl(req);
     const mdPath = path.join(getProjectsDir(), projectName, 'page.md');
     let html = pageToHTML(mdPath);
+    if(html == null){
+        return null;
+    }
+
+    // use regex to transform img paths to img urls
+    html = html.replace(/src="\.\//g, `src="${baseUrl}/projects/${projectName}/`)
+
+
+
     const json = {
         "project": `${baseUrl}/${projectName}`,
         "page": html
