@@ -9,6 +9,19 @@ export async function getAllProjectUrls(){
     return await res.json();
 }
 
+export async function getProjectUrlByName(projectName){
+    const urls = await getAllProjectUrls();
+    const names = urls.map((url) => {
+        return url.split('/').pop();
+    });
+    const index = names.indexOf(projectName);
+    if(index === -1){
+        return null;
+    }
+    return urls[index];
+}
+
+
 export async function getProjectMetaData(projectUrl){
     let res = await fetch(projectUrl);
     if(!res.ok){
@@ -29,6 +42,19 @@ export async function getThumbnailUrl(projectUrl){
         return '';
     }
     return (await res.json()).thumbnail;
+}
+
+export async function getProjectPage(projectUrl){
+    let res = await fetch(projectUrl);
+    if(!res.ok){
+        return null;
+    }
+    const pageUrl = (await res.json()).page;
+    res = await fetch(pageUrl);
+    if(!res.ok){
+        return null;
+    }
+    return (await res.json()).page;
 }
 
 export async function getAllTags(){

@@ -22,11 +22,14 @@ let theme = createTheme({
         info: {
             main: "#73b7c7",
         },
+        background: {
+            main: "#faf6ee"
+        }
     },
     /*typography: {
         fontFamily: "'Roboto'",
         h1: {
-            fontFamily: "'Roboto'"
+            fontFamily: "'Montserrat Thin'"
         },
         h2: {
             fontFamily: "'Roboto'"
@@ -52,7 +55,7 @@ function App() {
                     <Route index element={<Home/>} />
                     <Route path="/about" element={<About />} />
                     <Route path="/projects" element={<Projects />} />
-                    <Route path="/project/:projectName" element={<Project />} />
+                    <Route path="/projects/:projectName" element={<Project />} />
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>

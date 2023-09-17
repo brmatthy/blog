@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Chip, Divider, Typography } from '@mui/material'
-import { getProjectMetaData, getThumbnailUrl } from "../../scripts/ProjectFetcher";
+import { getNameByProjectUrl, getProjectMetaData, getThumbnailUrl } from "../../scripts/ProjectFetcher";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { useHistory, useNavigate } from 'react-router-dom';
 
 function ProjectCard({projectUrl}){
     const [projectMeta, setProjectMeta] = useState({"tags": []});
@@ -12,23 +13,28 @@ function ProjectCard({projectUrl}){
             setProjectMeta(await getProjectMetaData(projectUrl));
         }
         fetchMetaData();
-    })
+    }, [])
 
     useEffect(() => {
         async function fetchThumbnailUrl(){
             setProjectThumbnailUrl(await getThumbnailUrl(projectUrl));
         }
         fetchThumbnailUrl();
-    })
+    }, [])
+    const navigate = useNavigate();
+    function handleRoute(){
+        navigate(`${projectUrl.split('/').pop()}`);
+
+    }   
     
     return(
-        <Card sx= {{ maxWidth:400, m:1}}>
-            <CardActionArea>
+        <Card sx= {{ maxWidth:400, m:1, display: 'flex', flexDirection: 'column'}}>
+            <CardActionArea onClick={handleRoute} sx= {{  display: 'flex', flexDirection: 'column', flexGrow:1 }}>
                 <CardMedia
                     component="img"
                     image={projectThumbnailUrl}
                 />
-                <CardContent>
+                <CardContent sx= {{flexGrow:1}}>
                     <Typography variant="h5">
                         {projectMeta.title}
                     </Typography>
@@ -46,7 +52,7 @@ function ProjectCard({projectUrl}){
                 </CardContent>
                 
             </CardActionArea>
-            <CardActions sx={{ display:'flex', flexWrap:'wrap'}}>
+            <CardActions sx={{ display:'flex', flexWrap:'wrap', alignContent: 'flex-start'}}>
                 {projectMeta.tags.map((tag) =>
                     <Button
                         key={tag} 
