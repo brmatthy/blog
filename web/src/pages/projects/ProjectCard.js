@@ -2,32 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Chip, Divider, Typography } from '@mui/material'
 import { getNameByProjectUrl, getProjectMetaData, getThumbnailUrl } from "../../scripts/ProjectFetcher";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { useHistory, useNavigate } from 'react-router-dom';
+import { useHistory, useNavigate, useSearchParams } from 'react-router-dom';
+import TagBtn from './TagBtn'
 
-function ProjectCard({projectUrl}){
-    const [projectMeta, setProjectMeta] = useState({"tags": []});
-    const [projectThumbnailUrl, setProjectThumbnailUrl] = useState("");
+function ProjectCard({projectUrl, projectMeta, projectThumbnailUrl}){
+    const [searchparams, setSearchParams] = useSearchParams();
 
-    useEffect(() => {
-        async function fetchMetaData(){
-            setProjectMeta(await getProjectMetaData(projectUrl));
-        }
-        fetchMetaData();
-    }, [])
-
-    useEffect(() => {
-        async function fetchThumbnailUrl(){
-            setProjectThumbnailUrl(await getThumbnailUrl(projectUrl));
-        }
-        fetchThumbnailUrl();
-    }, [])
     const navigate = useNavigate();
     function handleRoute(){
         navigate(`${projectUrl.split('/').pop()}`);
 
     }   
     
-    return(
+    return (
+
         <Card sx= {{ maxWidth:400, m:1, display: 'flex', flexDirection: 'column'}}>
             <CardActionArea onClick={handleRoute} sx= {{  display: 'flex', flexDirection: 'column', flexGrow:1 }}>
                 <CardMedia
@@ -53,20 +41,12 @@ function ProjectCard({projectUrl}){
                 
             </CardActionArea>
             <CardActions sx={{ display:'flex', flexWrap:'wrap', alignContent: 'flex-start'}}>
-                {projectMeta.tags.map((tag) =>
-                    <Button
-                        key={tag} 
-                        color="secondary"
-                        size="small"
-                        variant="outlined"
-                        sx={{
-                            textTransform: 'capitalize'
-                        }}
-                    >
-                            {tag}
-                    </Button>
-                )
-                }
+                {projectMeta.tags.map((tag) => <TagBtn 
+                                                    key={tag}
+                                                    tag={tag} 
+                                                    onClick={() => setSearchParams({'tag':tag})}
+                                                    variant='outlined'
+                                                /> )}
             </CardActions> 
         </Card>
     );
