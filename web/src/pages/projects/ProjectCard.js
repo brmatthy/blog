@@ -45,6 +45,7 @@ function ProjectCard({projectUrl, projectMeta, projectThumbnailUrl}){
                                                     key={tag}
                                                     tag={tag} 
                                                     onClick={() => setSearchParams({'tag':tag})}
+                                                    variant='outlined'
                                                 /> )}
             </CardActions> 
         </Card>

@@ -1,15 +1,16 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-function TagBtn({tag, onClick}){
+function TagBtn({tag, onClick, variant, ...props}){
     return(
         <Button
             onClick={() => onClick()}
             color="secondary"
             size="small"
-            variant="outlined"
+            variant={variant}
             sx={{
-                textTransform: 'capitalize'
+                textTransform: 'capitalize',
+                ...props
             }}
         >
             {tag}

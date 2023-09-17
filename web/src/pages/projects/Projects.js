@@ -52,16 +52,18 @@ function Projects(){
     
     return (
         <div>
-            <Box sx={{display:'flex'}}>
+            <Box sx={{display:'flex', justifyContent:'center', mt:2}}>
                 <TagBtn tag='all' onClick={() => {
                     const params = searchparams;
                     params.delete('tag');
                     setSearchParams(params);
-                }} />
+                }} mx={0.5} variant={selectedTag == null ? 'contained' : 'outlined'} />
                 {tags.map((tag) => <TagBtn 
                                         key={tag} 
                                         tag={tag}
                                         onClick={() => setSearchParams({'tag':tag})}
+                                        mx={0.5}
+                                        variant={selectedTag === tag ? 'contained' : 'outlined'}
                                     />)}
             </Box>
             <Grid container my={1} >
