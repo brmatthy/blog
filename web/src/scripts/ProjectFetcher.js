@@ -67,5 +67,21 @@ export async function getAllTags(){
         }
         projectMetaData.tags.forEach( (tag) => {tags.add(tag)} );
     }
-    return tags;
+    return Array.from(tags);
+}
+
+export async function getProjectUrlsWithTag(tag){
+    const urls = await getAllProjectUrls();
+    const projectUrls = []
+    for(const projectUrl of urls){
+        const projectMetaData = await getProjectMetaData(projectUrl);
+        if(projectMetaData == null){
+            continue;
+        }
+        // check if contains a valid tag
+        if(projectMetaData.tags.includes(tag)){
+            projectUrls.add(projectUrl);
+        }
+    }
+    return projectUrls;
 }
