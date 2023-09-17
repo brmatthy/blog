@@ -22,6 +22,9 @@ let theme = createTheme({
         info: {
             main: "#73b7c7",
         },
+        background: {
+            main: "#faf6ee"
+        }
     },
     /*typography: {
         fontFamily: "'Roboto'",

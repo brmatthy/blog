@@ -1,9 +1,10 @@
 import {Outlet} from "react-router-dom";
 import NavBar from "./NavBar";
 import BottomBar from "./bottombar/BottomBar";
-import {Box, Fab, Slide, Toolbar, useScrollTrigger} from "@mui/material";
+import {Box, Fab, Slide, Toolbar, useScrollTrigger, useTheme} from "@mui/material";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import HFillWrapper from "./HFillWrapper";
+import { red } from "@mui/material/colors";
 
 
 function ScrollTopBtn() {
@@ -44,8 +45,9 @@ function ScrollTopBtn() {
 
 
 function MainLayout() {
+  const theme = useTheme();
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: theme.palette.background.main}}>
       <NavBar />
       <Toolbar sx={{ mb:3}}></Toolbar>
       <div style={{ flex: 1 }}>
