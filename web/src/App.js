@@ -23,7 +23,7 @@ let theme = createTheme({
             main: "#73b7c7",
         },
     },
-    typography: {
+    /*typography: {
         fontFamily: "'Roboto'",
         h1: {
             fontFamily: "'Montserrat Thin'"
@@ -37,7 +37,7 @@ let theme = createTheme({
         h4: {
             fontFamily: "'Roboto'"
         }
-    },
+    },*/
 });
 
 theme = responsiveFontSizes(theme);

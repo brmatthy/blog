@@ -13,14 +13,14 @@ function ProjectCard({projectUrl}){
             setProjectMeta(await getProjectMetaData(projectUrl));
         }
         fetchMetaData();
-    })
+    }, [])
 
     useEffect(() => {
         async function fetchThumbnailUrl(){
             setProjectThumbnailUrl(await getThumbnailUrl(projectUrl));
         }
         fetchThumbnailUrl();
-    })
+    }, [])
     const navigate = useNavigate();
     function handleRoute(){
         navigate(`${projectUrl.split('/').pop()}`);
@@ -28,13 +28,13 @@ function ProjectCard({projectUrl}){
     }   
     
     return(
-        <Card sx= {{ maxWidth:400, m:1}}>
-            <CardActionArea onClick={handleRoute}>
+        <Card sx= {{ maxWidth:400, m:1, display: 'flex', flexDirection: 'column'}}>
+            <CardActionArea onClick={handleRoute} sx= {{  display: 'flex', flexDirection: 'column', flexGrow:1 }}>
                 <CardMedia
                     component="img"
                     image={projectThumbnailUrl}
                 />
-                <CardContent>
+                <CardContent sx= {{flexGrow:1}}>
                     <Typography variant="h5">
                         {projectMeta.title}
                     </Typography>
@@ -52,7 +52,7 @@ function ProjectCard({projectUrl}){
                 </CardContent>
                 
             </CardActionArea>
-            <CardActions sx={{ display:'flex', flexWrap:'wrap'}}>
+            <CardActions sx={{ display:'flex', flexWrap:'wrap', alignContent: 'flex-start'}}>
                 {projectMeta.tags.map((tag) =>
                     <Button
                         key={tag} 
