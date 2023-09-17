@@ -1,23 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import ProjectCard from './ProjectCard';
-import { getAllProjectUrls, getAllTags } from '../../scripts/ProjectFetcher';
+import { getAllProjectUrls, getAllTags, getProjectMetaData, getThumbnailUrl } from '../../scripts/ProjectFetcher';
 import { Card, Grid, Box } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import TagBtn from './TagBtn';
 
 
 function Projects(){
-    const [projectUrls, setProjectUrls] = useState([]);
+    const [projects, setProjects] = useState([]);
     const [tags, setTags] = useState([]);
     const [searchparams, setSearchParams] = useSearchParams();
     const [selectedTag, setSelectedTag] = useState("");
 
     useEffect(() => {
-        async function fetchProjectUrls(){
-            setProjectUrls(await getAllProjectUrls())
+        async function fetchProjectMedaData(projectUrl){
+            return(await getProjectMetaData(projectUrl));
         }
-        fetchProjectUrls();
-    }, []);
+        
+        async function fetchThumbnailUrl(projectUrl){
+            return(await getThumbnailUrl(projectUrl));
+        }
+
+        async function fetchProjectsData(){
+            const projectUrls = await getAllProjectUrls();
+            const projectList = []; 
+            for(const projectUrl of projectUrls){
+                projectList.push({
+                    'url': projectUrl,
+                    'meta': await fetchProjectMedaData(projectUrl),
+                    'thumbnailUrl': await fetchThumbnailUrl(projectUrl) 
+                });
+            }
+            setProjects(projectList);
+        }
+        fetchProjectsData();
+
+   },[]);
 
     useEffect(() => {
         async function fetchTags(){
@@ -25,6 +43,10 @@ function Projects(){
         }
         fetchTags();
     }, []);
+
+    useEffect(() => {
+        setSelectedTag(searchparams.get('tag'));
+    }, [searchparams])
 
     
     
@@ -43,10 +65,14 @@ function Projects(){
                                     />)}
             </Box>
             <Grid container my={1} >
-                {projectUrls.map((projectUrl) => 
-                    <Grid item key={projectUrl} xs={12} sm={6} md={4} display='flex' justifyContent='center'>
-                        <ProjectCard key={projectUrl} projectUrl={projectUrl} />
-                    </Grid>
+                {projects.map((project) =>
+                    {
+                        return (project.meta.tags.includes(String(selectedTag)) || selectedTag == null) ?  
+                            <Grid item key={project.url} xs={12} sm={6} md={4} display='flex' justifyContent='center'>
+                                <ProjectCard projectUrl={project.url} projectMeta={project.meta} projectThumbnailUrl={project.thumbnailUrl}/>
+                            </Grid> :
+                            null
+                    }
                     )
                 }
             </Grid>
