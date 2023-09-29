@@ -128,23 +128,37 @@ function Home(){
             ]
         },
         {
-            title:"",
+            title:"Audio Mixing",
             icon:() => <div/>,
             courses:[
                 {
-                    name: '',
-                    tutors: ''  
+                    name: 'Recording & Mixing Punk Rock',
+                    tutors: 'Bradley Cook'  
                 },
+                {
+                    name: 'Mixing Hard Rock',
+                    tutors: 'ob Marlette'  
+                },
+                 {
+                    name: 'Mixing Roxk',
+                    tutors: 'Ulrich Wild'  
+                },
+ 
             ]
         },
-         {
-            title:"",
+       {
+            title:"Storywriting",
             icon:() => <div/>,
             courses:[
                 {
-                    name: '',
-                    tutors: ''  
+                    name: 'Storytelling',
+                    tutors: 'MC, Neil Gaiman'  
                 },
+                {
+                    name: 'Independent FIlmmaking, Filmmaking',
+                    tutors: 'MC, Spike Lee, Jodie Foster'  
+                },
+ 
             ]
         },
         {
@@ -272,44 +286,54 @@ function Home(){
  
             ]
         },
-        {
-            title:"",
-            icon:() => <div/>,
-            courses:[
-                {
-                    name: '',
-                    tutors: ''  
-                },
-            ]
-        },
          {
-            title:"",
+            title:"Music Performance",
             icon:() => <div/>,
             courses:[
                 {
-                    name: '',
-                    tutors: ''  
+                    name: 'Classical Guitar (private tutoring)',
+                    tutors: 'Music Academy Ghent, Ruben Minguez'  
                 },
-            ]
-        },
-        {
-            title:"",
-            icon:() => <div/>,
-            courses:[
                 {
-                    name: '',
-                    tutors: ''  
+                    name: 'Electric Guitar (private tutoring)',
+                    tutors: 'Music Academy Ghent, Edmund Lauret'  
                 },
+                 {
+                    name: 'Electric Guitar (masterclass)',
+                    tutors: 'Ruud Jolie'  
+                },
+                 {
+                    name: 'Jazz Band',
+                    tutors: 'Music Academy Ghent, Stijn Engels'  
+                },
+                 {
+                    name: 'Complete Vocal Technique',
+                    tutors: 'Catherine Sadolin'  
+                },
+                 {
+                    name: 'Singing (private tutoring)',
+                    tutors: 'Sarah Algoet, Kristina Van Duyse'  
+                },
+                 {
+                    name: 'Singing',
+                    tutors: '30DaySinger, Jonathan Estabrooks, Camille Van Niekerk, Abram Poliakoff'  
+                },
+                 {
+                    name: 'Singing',
+                    tutors: 'MC, Christina Aguilera'  
+                },
+ 
             ]
         },
+ 
     ]
 
     function firstHalf(){
-        return cardContents.slice(0, Math.ceil(cardContents.length /2) - 1)
+        return cardContents.slice(0, Math.ceil(cardContents.length /2))
     }
 
     function lastHalf(){
-        return cardContents.slice(Math.ceil(cardContents.length /2) -1, cardContents.length)
+        return cardContents.slice(Math.ceil(cardContents.length /2), cardContents.length)
     }
 
     return (
