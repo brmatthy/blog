@@ -22,28 +22,28 @@ function HTMLRenderer({ html }) {
   // Define the styles for h1 and p tags
   const tagStyles = {
     h1: {
-      color: theme.palette.primary.dark,
+      color: theme.palette.background.contrastText,
     },
     h2: {
-      color: theme.palette.primary.dark,
+      color: theme.palette.background.contrastText,
     },
     h3: {
-      color: theme.palette.primary.dark,
+      color: theme.palette.background.contrastText,
     },
     h4: {
-      color: theme.palette.primary.dark,
+      color: theme.palette.background.contrastText,
     },
     h5: {
-      color: theme.palette.primary.dark,
+      color: theme.palette.background.contrastText,
     },
     h6: {
-      color: theme.palette.primary.dark,
+      color: theme.palette.background.contrastText,
     },
     p: {
-        color: theme.palette.primary.dark,
+        color: theme.palette.background.contrastText,
     },
     body1:{
-        color: theme.palette.primary.dark,
+        color: theme.palette.background.contrastText,
     }
   };
 

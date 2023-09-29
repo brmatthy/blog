@@ -16,7 +16,7 @@ function ProjectCard({projectUrl, projectMeta, projectThumbnailUrl}){
     
     return (
 
-        <Card sx= {{ maxWidth:400, m:1, display: 'flex', flexDirection: 'column'}}>
+        <Card sx= {{ maxWidth:400, m:1, display: 'flex', flexDirection: 'column', borderColor:'secondary.main'}} variant="outlined">
             <CardActionArea onClick={handleRoute} sx= {{  display: 'flex', flexDirection: 'column', flexGrow:1 }}>
                 <CardMedia
                     component="img"

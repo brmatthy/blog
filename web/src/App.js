@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
-import About from './pages/About';
+import About from './pages/about/About';
 import Project from './pages/projects/Project';
 import MainLayout from './components/MainLayout'
 import NotFound from "./pages/NotFound";
@@ -23,7 +23,8 @@ let theme = createTheme({
             main: "#73b7c7",
         },
         background: {
-            main: "#faf6ee"
+            main: "#faf6ee",
+            contrastText: '#b68f77'
         }
     },
     /*typography: {
